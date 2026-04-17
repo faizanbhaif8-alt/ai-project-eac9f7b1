@@ -1,0 +1,106 @@
+# main.py
+
+import os
+import sys
+import logging
+from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def greet_user(name: str) -> str:
+    """
+    Greets the user with a personalized message.
+
+    Args:
+        name (str): The name of the user.
+
+    Returns:
+        str: A greeting message.
+    """
+    try:
+        if not name:
+            raise ValueError("Name cannot be empty.")
+        return f"Hello, {name}! Welcome to our project."
+    except ValueError as e:
+        logging.error(f"Error in greet_user: {e}")
+        return "An error occurred while greeting the user."
+
+def main():
+    """
+    Main function to execute the program.
+    """
+    try:
+        user_name = os.getenv("USER_NAME", "Guest")
+        greeting = greet_user(user_name)
+        print(greeting)
+    except Exception as e:
+        logging.error(f"An unexpected error occurred: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
+```
+
+```python
+# requirements.txt
+
+# List of dependencies for the project
+logging
+```
+
+```python
+# Dockerfile
+
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 80 available to the world outside this container
+EXPOSE 80
+
+# Define environment variable
+ENV USER_NAME="Guest"
+
+# Run main.py when the container launches
+CMD ["python", "main.py"]
+```
+
+```yaml
+# docker-compose.yml
+
+version: '3'
+services:
+  app:
+    image: my-python-app
+    build: .
+    environment:
+      - USER_NAME=John
+    ports:
+      - "80:80"
+```
+
+```bash
+# run.sh
+
+#!/bin/bash
+
+# Run the Docker container
+docker-compose up --build
+```
+
+```bash
+# cleanup.sh
+
+#!/bin/bash
+
+# Stop and remove the Docker container
+docker-compose down
