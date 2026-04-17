@@ -1,0 +1,84 @@
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Ignore editor-specific files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Ignore dependencies
+/node_modules
+/bower_components
+/dist
+/build
+
+# Ignore environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Ignore logs and databases
+*.log
+*.sqlite
+*.sqlite3
+
+# Ignore coverage directory
+/coverage
+
+# Ignore cache directories
+.cache
+.temp
+
+# Ignore npm/yarn files
+package-lock.json
+yarn.lock
+
+# Ignore IDE files
+*.iml
+*.ipr
+*.iws
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+
+# Ignore compiled files
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+
+# Ignore backup files
+*.bak
+*.old
+*.backup
+
+# Ignore generated files
+*.min.js
+*.min.css
+
+# Ignore test files
+/test
+/tests
+/spec
+/specs
+/__tests__
+/__mocks__
+
+# Ignore other project-specific files
+*.sublime-project
+*.sublime-workspace
+*.project
+*.classpath
+*.factorypath
+*.settings
